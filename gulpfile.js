@@ -19,6 +19,7 @@ const config = {
             './node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
             './src/*.css'
         ],
+        imgs: 'src/img/*',
         dist: './build'
     }
 };
@@ -66,10 +67,17 @@ gulp.task('lint', function () {
             .pipe(esint.format());
 });
 
+gulp.task('imgs', function () {
+    gulp.src(config.paths.imgs)
+        .pipe(gulp.dest(config.paths.dist + '/imgs'))
+        .pipe(connect.reload());
+});
+
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
     gulp.watch(config.paths.js, ['lint', 'js']);
     gulp.watch(config.paths.styles, ['styles']);
+    gulp.watch(config.paths.imgs, ['imgs']);
 });
 
-gulp.task('default', ['html', 'lint', 'js', 'styles', 'open', 'watch']);
+gulp.task('default', ['html', 'lint', 'js', 'styles', 'imgs', 'open', 'watch']);
