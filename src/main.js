@@ -4,7 +4,8 @@ global.$ = global.jQuery;
 const React = require('react');
 const Home = require('./components/Home');
 const About = require('./components/about/About');
-const Header = require('./components/header/withHeader');
+const Header = require('./components/header/Header');
+const Author = require('./components/author/Author');
 
 class App extends React.Component {
     constructor (props) {
@@ -28,10 +29,21 @@ class App extends React.Component {
         global.removeEventListener('hashchange', this.onHashChange);
     }
 
+    getPage() {
+        switch(this.props.route) {
+            case '/authors':
+                return <Author/>;
+            case '/about':
+                return <About />;
+            default:
+                return <Home />;
+        }
+    }
+
     render() {
         return (
             <Header>
-                {this.props.route === '/about' ? <About /> : <Home/>}
+                {this.getPage()}
             </Header>
         );
     }
