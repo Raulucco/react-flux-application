@@ -1,5 +1,6 @@
 const React = requie('react');
 const AuthorApi = require('../../../api/author');
+const Table = require('./Table');
 
 class Authors extends React.Component {
     constructor(props) {
@@ -7,19 +8,9 @@ class Authors extends React.Component {
         this.state = {
             authors: []
         };
-        this.createAuthorRow = this.createAuthorRow.bind(this);
     }
 
-    createAuthorRow(author) {
-        return (
-            <tr key={author.id}>
-                <td><a href={'#/author' + author.id}>{author.id}</a></td>
-                <td>{author.firstName} {author.lastName}</td>
-            </tr>
-        );
-    }
-
-    componentWillMount() {
+    componentDidMount() {
         this.setState({
             authors: AuthorApi.getAllAuthors()
         });
@@ -29,15 +20,7 @@ class Authors extends React.Component {
         return (
             <div className="authors">
                 <h1>Authors</h1>
-                <table className="table">
-                    <thead>
-                        <th>ID</th>
-                        <th>Name</th>
-                    </thead>
-                    <tbody>
-                        {this.state.authors.map(this.createAuthorRow)}
-                    </tbody>
-                </table>
+                {this.state.authors.length && <Table authors=(this.state.authors) />}
             </div>
         );
     }
