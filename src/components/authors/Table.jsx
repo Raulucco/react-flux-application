@@ -26,4 +26,8 @@ class Table extends React.Component {
     }
 }
 
+Table.propTypes = {
+    authors: React.PropTypes.array.isRequired
+};
+
 module.exports = Table;

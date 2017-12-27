@@ -20,7 +20,7 @@ class Authors extends React.Component {
         return (
             <div className="authors">
                 <h1>Authors</h1>
-                {this.state.authors.length && <Table authors=(this.state.authors) />}
+                {this.state.authors.length && <Table authors={this.state.authors} />}
             </div>
         );
     }
