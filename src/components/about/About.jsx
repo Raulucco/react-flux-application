@@ -1,9 +1,6 @@
 const React = require('react');
 
 class About extends React.Component {
-    static willTransitionTo(transition, params, query, callback) {
-
-    }
     render() {
         return (
             <div className="jumbotron">

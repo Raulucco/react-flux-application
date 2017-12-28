@@ -17,6 +17,7 @@ const config = {
         styles: [
             './node_modules/bootstrap/dist/css/bootstrap.min.css',
             './node_modules/bootstrap/dist/css/bootstrap-theme.min.css',
+            './node_modules/toastr/build/toastr.min.css',
             './src/*.css'
         ],
         imgs: 'src/img/*',

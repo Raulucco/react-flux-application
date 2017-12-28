@@ -1,11 +1,15 @@
 const React = requie('react');
 const AuthorApi = require('../../../api/author');
+const PropTypes = require('prop-types');
 
 class Table extends React.Component {
+    static propTypes = {
+        authors: PropTypes.array.isRequired
+    }
     createAuthorRow() {
         return (
             <tr key={author.id}>
-                <td><a href={'#/author' + author.id}>{author.id}</a></td>
+                <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                 <td>{author.firstName} {author.lastName}</td>
             </tr>
         );
@@ -25,9 +29,5 @@ class Table extends React.Component {
         );
     }
 }
-
-Table.propTypes = {
-    authors: React.PropTypes.array.isRequired
-};
 
 module.exports = Table;

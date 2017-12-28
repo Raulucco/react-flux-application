@@ -9,9 +9,10 @@ const NotFound = require('./components/errors/404')
 const routes = (
     <Route name="app" path="/">
         <DefaultRoute handler={Home}/>
-        <Route name="about" path="about" handler={About} />
-        <Route name="authors" path="authors" handler={Author} />
-        <Route name="new-author" path="new-authors" handler={Author} handler={NewAuthor} />
+        <Route name="about" path="/about" handler={About} />
+        <Route name="authors" path="/authors" handler={Author} />
+        <Route name="new-author" path="/new-author" handler={NewAuthor} />
+        <Route name="edit-author" path="/author/:id" handler={NewAuthor} />
         <NotFoundRoute handler={NotFound} />
         <Redirect from="about-us" to="about" />
     </Route>
