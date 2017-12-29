@@ -1,19 +1,21 @@
 const React = requie('react');
-const AuthorApi = require('../../../api/author');
 const Table = require('./Table');
+const AuthorStore = require('../../stores/authors');
+const Dispatcher = require('../../dispatcher/authors');
+const ActionTypes = require('../../actionTypes');
 const {Link} = require('react-router');
 
 class Authors extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            authors: []
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            authors: AuthorApi.getAllAuthors()
+        this.state = {authors: []};
+        Dispatcher.dispatch({type: ActionTypes.GET_AUTHORS});
+        AuthorStore.addChangeListener((action) => {
+            if ([ActionTypes.GET_AUTHORS, ActionTypes.DELETE_AUTHOR].indexOf(action.type)) {
+                this.setState({
+                    authors: AuthorStore.getAllAuthors()
+                });
+            }
         });
     }
 

@@ -1,6 +1,17 @@
 const React = requie('react');
-const AuthorApi = require('../../../api/author');
+const AuthorStore = require('../../store/author');
 const PropTypes = require('prop-types');
+const Dispatcher = require('../../dispatcher/authors');
+const ActionTypes = require('../../actionTypes');
+
+function remove(id) {
+    Dispatcher.dispatch({
+        type: ActionTypes.DELETE_AUTHOR,
+        payload: {
+            id
+        }
+    });
+}
 
 class Table extends React.Component {
     static propTypes = {
@@ -11,6 +22,7 @@ class Table extends React.Component {
             <tr key={author.id}>
                 <td><Link to={'/author/' + author.id}>{author.id}</Link></td>
                 <td>{author.firstName} {author.lastName}</td>
+                <td><button onClick={() => remove(author.id)}>DELETE</button></td>
             </tr>
         );
     }
